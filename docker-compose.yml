@@ -1,0 +1,41 @@
+services:
+
+  spatial-api:
+    build:
+      context: ../geobuilding-spatial-api
+      dockerfile: Dockerfile
+
+    container_name: geobuilding-spatial-api
+
+    environment:
+      RESULTS_DIR: /app/results
+      SAVE_RESULTS: "true"
+
+    volumes:
+      - ./results:/app/results
+
+    ports:
+      - "8001:8001"
+
+
+  main-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: geobuilding-main-api
+
+    environment:
+      SPATIAL_API_URL: http://spatial-api:8001
+      DATABASE_PATH: /app/data/geobuilding.db
+      RESULTS_DIR: /app/results
+
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - spatial-api
