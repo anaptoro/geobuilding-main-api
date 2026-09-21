@@ -8,7 +8,7 @@ The application receives a polygon or multipolygon, communicates with a secondar
 
 The Main API also stores analysis metadata using SQLite, allowing previous analyses to be listed, retrieved, updated, and deleted.
 
-The architecture follows the proposed **Scenario 2.1**, where the Main API operates as an entry point/proxy and communicates with a secondary API responsible for the business logic and external-service communication.
+The architecture follows the proposed Scenario 2.1 of the MVP, where the Main API operates as an entry point/proxy and communicates with a secondary API responsible for the business logic and external-service communication.
 
 ---
 
